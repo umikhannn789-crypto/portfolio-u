@@ -128,7 +128,7 @@ const Hero = () => {
           >
 
             <a
-              href="/resume.pdf"
+              href="Resume.pdf"
               download
               className="
               flex

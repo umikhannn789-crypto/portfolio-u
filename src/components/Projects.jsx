@@ -7,7 +7,7 @@ import { FiExternalLink, FiX, FiPlay } from "react-icons/fi";
 // Images
 import ecommerce from "../assets/ecommerce.png";
 import restaurant from "../assets/restaurant.png";
-import itplatform from "../assets/itplatform.png";
+import ecommerce from "../assets/stowave.png";
 import dental from "../assets/dental.png";
 import cyberion from "../assets/cyberion.png";
 import leadhunter from "../assets/leadhunter.png";
@@ -32,7 +32,7 @@ const projects = [
     image: ecommerce,
     description:
       "Responsive online shopping website with product listing, shopping cart and beautiful user interface.",
-    tech: ["React", "CSS", "JavaScript", "API"],
+    tech:["React", "Tailwind CSS", "nodejs", "expressjs", "mongodb"],
     live: "https://hukamexpress.com/",
   },
   {
@@ -46,12 +46,12 @@ const projects = [
   },
   {
     id: 4,
-    name: "IT Company Website",
-    image: itplatform,
+    name: "Clothing Website",
+    image: clothing,
     description:
-      "Professional IT business website showcasing services, technologies and company solutions.",
-    tech: ["React", "Tailwind CSS", "Frontend"],
-    live: "https://itwebsite1.netlify.app/",
+      "A modern clothing e-commerce website offering stylish, high-quality fashion for every occasion.",
+    tech: ["React", "Tailwind CSS", "nodejs", "expressjs", "mongodb"],
+    live: "https://www.stowave.com/",
   },
   {
     id: 5,

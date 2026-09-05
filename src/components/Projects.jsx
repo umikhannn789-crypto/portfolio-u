@@ -7,7 +7,7 @@ import { FiExternalLink, FiX, FiPlay } from "react-icons/fi";
 // Images
 import ecommerce from "../assets/ecommerce.png";
 import restaurant from "../assets/restaurant.png";
-import ecommerce from "../assets/stowave.png";
+import clothing from "../assets/stowave.png";
 import dental from "../assets/dental.png";
 import cyberion from "../assets/cyberion.png";
 import leadhunter from "../assets/leadhunter.png";

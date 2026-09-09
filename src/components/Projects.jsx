@@ -10,7 +10,7 @@ import restaurant from "../assets/restaurant.png";
 import clothing from "../assets/stowave.png";
 import dental from "../assets/dental.png";
 import cyberion from "../assets/cyberion.png";
-import leadhunter from "../assets/leadhunter.png";
+import emaanmall from "../assets/emanmall.png"; // ✅ New image import
 
 // =======================================
 // Projects Data
@@ -54,38 +54,40 @@ const projects = [
     live: "https://www.stowave.com/",
   },
   {
-    id: 5,
-    name: "Lead Hunter",
-    image: leadhunter,
+    id: 5, // ✅ REPLACED with Emaan Mall
+    name: "Emaan Mall - Islamic E-Commerce",
+    image: emaanmall,
     description:
-      "Advanced lead generation and hunting platform with AI-powered prospecting, automated outreach, and real-time data extraction.",
-    tech: ["React", "Node.js", "Express", "MongoDB", "AI", "Web Scraping"],
+      "A comprehensive Islamic e-commerce platform offering a wide range of products including abayas, perfumes, accessories, and more with secure online payments.",
+    tech: ["React", "Node.js", "Express", "MongoDB", "Stripe", "Tailwind CSS"],
+    live: "https://emaanmall.com/",
     status: "Live",
-    isVideo: true,
-    video: "/videos/leadhunter.mp4",
-    live: "https://leadhunter-demo.com",
     details: `
-Lead Hunter is a powerful AI-driven lead generation platform designed to help businesses find, qualify, and engage potential customers at scale.
+Emaan Mall is a complete Islamic e-commerce platform designed to provide a seamless shopping experience for customers looking for quality products.
 
-The platform combines intelligent web scraping, AI-powered data enrichment, and automated outreach workflows to deliver high-quality leads with minimal manual effort.
+The platform offers a wide range of products including:
+• Abayas & Islamic Clothing
+• Perfumes & Attars
+• Accessories & Gifts
+• Home Decor Items
+• Islamic Books & Media
 
 Key Features:
+• User Authentication & Profiles
+• Product Categories & Filters
+• Secure Payment Integration (Stripe)
+• Shopping Cart Management
+• Order Tracking System
+• Admin Dashboard
+• Product Reviews & Ratings
+• Wishlist Functionality
+• Responsive Design
+• Fast & Secure Checkout
 
-• AI-Powered Prospecting
-• Real-Time Data Extraction
-• Automated Email Outreach
-• Lead Scoring & Qualification
-• Advanced Filtering & Search
-• Bulk Data Export
-• CRM Integration
-• Analytics Dashboard
-• Email Verification
-• Company Intelligence
-
-This tool is ideal for sales teams, marketers, and business development professionals looking to accelerate their lead generation process.
+This platform is built with modern web technologies to ensure speed, security, and a smooth user experience for all customers.
 
 Technologies Used:
-React, Node.js, Express, MongoDB, AI/ML, Web Scraping, REST APIs, JWT Authentication
+React, Node.js, Express, MongoDB, Stripe, JWT Authentication, Tailwind CSS, REST APIs
     `,
   },
   {
@@ -127,11 +129,9 @@ This project is currently under development and new modules are being added cont
 // Project Card
 // =======================================
 
-function ProjectCard({ project, setSelectedProject, setVideoProject }) {
+function ProjectCard({ project, setSelectedProject }) {
   const handleClick = () => {
-    if (project.id === 5 && project.isVideo) {
-      setVideoProject(project);
-    } else if (project.id === 6) {
+    if (project.id === 6) {
       setSelectedProject(project);
     } else {
       window.open(project.live, "_blank");
@@ -168,34 +168,16 @@ function ProjectCard({ project, setSelectedProject, setVideoProject }) {
       >
         {/* Image - Fixed Height */}
         <div className="relative h-[230px] w-full overflow-hidden flex-shrink-0">
-          {project.isVideo ? (
-            <video
-              src={project.video}
-              className="w-full h-full object-cover duration-700 group-hover:scale-110"
-              muted
-              loop
-              autoPlay
-              playsInline
-            />
-          ) : (
-            <img
-              src={project.image}
-              alt={project.name}
-              className="w-full h-full object-cover duration-700 group-hover:scale-110"
-            />
-          )}
+          <img
+            src={project.image}
+            alt={project.name}
+            className="w-full h-full object-cover duration-700 group-hover:scale-110"
+          />
 
           {/* Status Badge */}
           {project.status && (
             <span className="absolute top-4 left-4 px-4 py-1.5 rounded-full text-xs font-semibold bg-yellow-500/20 border border-yellow-500/30 text-yellow-300 z-10">
               {project.status}
-            </span>
-          )}
-
-          {/* Video Badge */}
-          {project.isVideo && (
-            <span className="absolute top-4 right-4 px-3 py-1.5 rounded-full text-xs font-semibold bg-violet-500/30 border border-violet-500/40 text-violet-300 flex items-center gap-1.5 z-10">
-              <FiPlay size={12} /> Video
             </span>
           )}
 
@@ -206,7 +188,7 @@ function ProjectCard({ project, setSelectedProject, setVideoProject }) {
               className="flex items-center gap-2 px-7 py-3 rounded-full bg-violet-600 hover:bg-violet-500 text-white font-semibold transition-all duration-300"
             >
               <FiExternalLink size={18} />
-              {project.isVideo ? "Watch Video" : "View Project"}
+              {project.id === 6 ? "View Details" : "View Project"}
             </button>
           </div>
         </div>
@@ -244,7 +226,6 @@ function ProjectCard({ project, setSelectedProject, setVideoProject }) {
 export default function Projects() {
   const sliderRef = useRef(null);
   const [selectedProject, setSelectedProject] = useState(null);
-  const [videoProject, setVideoProject] = useState(null);
 
   useEffect(() => {
     const slider = sliderRef.current;
@@ -312,7 +293,6 @@ export default function Projects() {
                 key={index}
                 project={project}
                 setSelectedProject={setSelectedProject}
-                setVideoProject={setVideoProject}
               />
             ))}
           </div>
@@ -382,68 +362,6 @@ export default function Projects() {
                   ))}
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </div>
-      )}
-
-      {/* ================= Lead Hunter Video Modal ================= */}
-      {videoProject && (
-        <div className="fixed inset-0 z-[999] bg-black/90 backdrop-blur-md flex items-center justify-center p-6">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            className="relative w-full max-w-5xl rounded-3xl bg-[#121212] border border-violet-500/20 shadow-[0_0_60px_rgba(139,92,246,.25)] overflow-hidden"
-          >
-            <button
-              onClick={() => setVideoProject(null)}
-              className="absolute top-6 right-6 w-11 h-11 rounded-full bg-black/50 hover:bg-violet-600 duration-300 flex items-center justify-center z-10"
-            >
-              <FiX size={22} className="text-white" />
-            </button>
-
-            <video
-              src={videoProject.video}
-              className="w-full max-h-[70vh] object-contain"
-              controls
-              autoPlay
-              playsInline
-            />
-
-            <div className="p-6">
-              <div className="flex items-center gap-4 flex-wrap">
-                <h2 className="text-2xl font-bold text-white">
-                  {videoProject.name}
-                </h2>
-                <span className="px-3 py-1 rounded-full text-xs font-semibold bg-green-500/20 border border-green-500/30 text-green-300">
-                  Live Demo
-                </span>
-              </div>
-              <p className="mt-3 text-gray-400 leading-7">
-                {videoProject.description}
-              </p>
-              <div className="flex flex-wrap gap-2 mt-4">
-                {videoProject.tech.slice(0, 6).map((item) => (
-                  <span
-                    key={item}
-                    className="px-3 py-1 rounded-full bg-violet-600/15 border border-violet-500/20 text-violet-300 text-xs"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-              {videoProject.live && (
-                <a
-                  href={videoProject.live}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block mt-4 px-6 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white font-semibold transition-all duration-300"
-                >
-                  <FiExternalLink className="inline mr-2" size={16} />
-                  Visit Website
-                </a>
-              )}
             </div>
           </motion.div>
         </div>
